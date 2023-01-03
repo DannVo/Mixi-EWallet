@@ -1,0 +1,102 @@
+<%- include('./layouts/head.ejs') %>
+
+<body>
+  <div class="wrapper">
+    <%- include('./layouts/admin_navbar.ejs') %>
+    <div class="main-panel ">
+      <section class="h-100 " style="background: linear-gradient(to right, rgb(237 242 247), rgb(216 223 231));">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+              <div class="card">
+                <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:90px;">
+
+                  <div class="ms-3" style="margin-top: 10px;">
+                    <h5>
+                      <%=user.fullname%>
+                    </h5>
+                    <p>
+                      <% if(user.inconstant_login !== 0) { %>
+                      <span class="badge badge-danger rounded-pill d-inline">Bị khoá</span>
+                      <% } %>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card-body p-4 text-black">
+                  <div class="mb-5">
+                    <p class="lead fw-normal mb-1">THÔNG TIN</p>
+                    <div class="p-4" style="background-color: #f8f9fa;">
+                      <p class="font-italic mb-1">Đia chỉ E-Mail: <strong>
+                          <%= user.email %></strong>
+                      </p>
+                      <p class="font-italic mb-1">Số điện thoại: <strong>
+                          <%= user.phone %></strong>
+                      </p>
+                      <p class="font-italic mb-0">Ngày sinh: <strong>
+                          <%= user.birthday%></strong>
+                      </p>
+                      <p class="font-italic mb-0">Địa chỉ: <strong>
+                          <%= user.address%></strong>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <p class="lead fw-normal mb-0">Chứng minh nhân dân</p>
+
+                  </div>
+                  <div class="row g-2">
+                    <div class="col mb-2">
+                      <img src="/uploads/<%=user.idcard_front%>" alt="Ảnh CMND mặt trước" class="w-100 rounded-3">
+                    </div>
+                    <div class="col mb-2">
+                      <img src="/uploads/<%= user.idcard_back%>" alt="Ảnh CMND mặt sau" class="w-100 rounded-3">
+                    </div>
+                  </div>
+                  <% if(user.inconstant_login !== 0){ %>
+                  <div class="row ">
+                    <div class="col-4 mb-1 text-center">
+
+                    </div>
+                    <div class="col-4 mb-1 text-center">
+
+                      <button value="0" name="inconstant_login" data-toggle="modal" data-target="#unlock" class="btn btn-danger" style="background:#000; color:#fff">Mở khóa</button>
+
+                    </div>
+                    <div class="col-4 mb-1 text-center">
+                    </div>
+                  </div>
+                  <% } %>
+                </div>
+                <div style="margin:10px"><a href="#" onclick="history.back()" style="color:#6209ab">Quay lại</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  </section>
+  </div>
+  </div>
+
+</body>
+<!-- Modal -->
+<div id="unlock" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Mở khóa tài khoản này ?</p>
+      </div>
+      <div class="modal-footer">
+        <form method="post">
+          <button value="0" name="inconstant_login" class="btn btn-primary" style="background:#000; color:#fff">Xác nhận</button>
+        </form>
+        <button type="button" class="btn btn-muted" data-dismiss="modal">Huỷ</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>

@@ -1,0 +1,96 @@
+<%- include('./layouts/head.ejs') %>
+
+<body>
+  <div class="wrapper">
+    <%- include('./layouts/user_navbar.ejs') %>
+    <div class="main-panel" style="background-image: url('/images/bg5.jpg'); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+      <div class="container mt-5">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0 p-4">
+            <h1 class="text-black text-center">Mua thẻ điện thoại</h1><br><br><br>
+            <form action="/user/buyCard" method="post">
+              <!-- chọn nhà mạng và chọn mệnh giá -->
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="form-label" for="dateExp">Chọn nhà mạng:</label>
+                    <select id="name_card" name="name_card" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option value="Viettel">Viettel</option>
+                      <option value="Mobifone">Mobifone</option>
+                      <option value="Vinaphone">Vinaphone</option>
+
+                    </select>
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cvv">Mệnh giá</label>
+                  <select onclick="calculateTotal()" id="price" name="price" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option value="10000">10,000</option>
+                    <option value="20000">20,000</option>
+                    <option value="50000">50,000</option>
+                    <option value="100000">100,000</option>
+                  </select>
+
+                </div>
+              </div>
+
+              <!-- phí giao dịch và số lượng thẻ cào -->
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-group ">
+                    <label class="form-label">Số lượng</label>
+                    <input onclick="calculateTotal()" id="quantity" name="quantity" value="1" type="number" min="0.0" class="form-control" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form-label" for="dateExp">Phí giao dịch</label>
+                      <input id="fee" name="fee" value="0" type="text" class="form-control" disabled />
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form-label" for="dateExp">Số tiền thanh toán</label>
+                      <input id="total" type="text" class="form-control" disabled />
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <% if(error){ %>
+              <div class="alert alert-danger mb-3">
+                <strong>Lưu ý!</strong>
+                <%= error %>
+              </div>
+              <%}%>
+                                            <!-- Submit button -->
+                                            <button type="submit" class="btn btn-primary btn-block " style="background:#000; color:#fff">Mua</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+        </div>
+     
+        <script src="/js/main.js"></script>
+        <script>
+            setTimeAutoClosing(".alert-danger", 3000);
+        </script>
+        
+    </body>
+
+    </html>
